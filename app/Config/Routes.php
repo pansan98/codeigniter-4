@@ -36,7 +36,11 @@ $routes->get('/', 'Home::index');
 
 
 // Product
-$routes->get('/product', 'Product:index');
+$routes->get('/product', 'Product::index');
+
+
+// User
+$routes->get('/user/create_table', 'User::connection');
 
 /*
  * --------------------------------------------------------------------

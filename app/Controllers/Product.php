@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
+use App\Controllers\CustomBaseController;
 
-class Product extends BaseController
+class Product extends CustomBaseController
 {
     public function index()
     {
-        //
+        return view('product/index.html.php');
     }
 }
