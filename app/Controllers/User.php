@@ -7,6 +7,11 @@ use App\Models\User as UserModel;
 
 class User extends CustomBaseController
 {
+    protected $views = [
+        'index' => 'user/login.html.php',
+        'mypage' => 'user/mypage/index.html.php'
+    ];
+    
     protected $models = [
         'item' => UserModel::class
     ];
@@ -14,6 +19,13 @@ class User extends CustomBaseController
     public function index()
     {
         //
+        return $this->view('index');
+    }
+    
+    public function mypage()
+    {
+        //return $this->view('mypage');
+        return view($this->views['mypage']);
     }
     
     public function create()

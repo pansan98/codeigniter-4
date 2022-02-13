@@ -41,6 +41,7 @@ $routes->get('/product', 'Product::index');
 
 // User
 $routes->get('/user/create_table', 'User::connection');
+$routes->get('/user/mypage', 'User::mypage');
 
 /*
  * --------------------------------------------------------------------
