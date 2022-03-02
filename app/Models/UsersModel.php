@@ -5,6 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use App\Models\BaseModel;
 use Config\Database;
+use Config\Services;
 
 class UsersModel extends BaseModel
 {
@@ -16,7 +17,7 @@ class UsersModel extends BaseModel
     protected $returnType       = 'object';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['login_id', 'login_pw', 'name', 'remote_ip'];
+    protected $allowedFields    = ['login_id', 'login_pass', 'nickname', 'mail', 'remote_ip'];
 
     // Dates
     protected $useTimestamps = false;
@@ -42,6 +43,7 @@ class UsersModel extends BaseModel
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    protected $errors = [];
 
     public function run()
     {
@@ -77,6 +79,15 @@ class UsersModel extends BaseModel
                     'type' => 'VARCHAR',
                     'constraint' => 100,
                     'null' => true
+                ],
+                'created_at' => [
+                    'type' => 'datetime'
+                ],
+                'updated_at' => [
+                    'type' => 'datetime'
+                ],
+                'deleted_at' => [
+                    'type' => 'datetime'
                 ]
             ];
 
@@ -89,5 +100,33 @@ class UsersModel extends BaseModel
         }
 
         return 'done.';
+    }
+
+    /**
+     * @param $field
+     * @param $value
+     * @return bool
+     */
+    public function exists($field, $value)
+    {
+        $exists = $this->where($field, $value)->findAll();
+        if(!empty($exists)) {
+            if(!isset($this->errors['exists'])) {
+                $this->errors['exists'] = [];
+            }
+
+            $this->errors['exists'][$field] = true;
+        }
+
+        return !empty($exists);
+    }
+
+    /**
+     * @param $key
+     * @return mixed|null
+     */
+    public function getError($key)
+    {
+        return isset($this->errors[$key]) ? $this->errors[$key] : null;
     }
 }

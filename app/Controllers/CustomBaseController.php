@@ -50,9 +50,8 @@ class CustomBaseController extends BaseController
      * @param string $view
      * @return string
      */
-    protected function view($view = 'index')
+    protected function view($view = 'index', $data = [])
     {
-        $this->load->view('data', $this->data);
-        return view($this->views[$view]);
+        return view($this->views[$view], $data);
     }
 }

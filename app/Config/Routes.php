@@ -40,15 +40,14 @@ $routes->get('product', 'Product::index');
 
 
 // User
-$routes->group('user',function($routes) {
+$routes->group('user', function($routes) {
+    /** @var \CodeIgniter\Router\RouteCollection $routes */
     $routes->get('create_table', 'User::connection');
     $routes->get('mypage', 'User::mypage');
     $routes->get('mypage/posts', 'User::myposts');
-    $routes->get('signin', 'User::signin');
-    $routes->post('signin', 'User::signin');
-    $routes->get('signup', 'User::signup');
-    $routes->post('signup', 'User::signup');
-    $routes->get('signout', 'User::signout');
+    $routes->get('signout', 'User::signout', ['as' => 'user_signout']);
+    $routes->add('signin', 'User::signin', ['as' => 'user_signin']);
+    $routes->add('signup', 'User::signup', ['as' => 'user_signup']);
 });
 
 /*

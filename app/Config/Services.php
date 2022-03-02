@@ -29,4 +29,29 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
+
+    /**
+     * @param string|null $viewPath
+     * @param $config
+     * @param bool $getShared
+     * @return \App\Core\View\View|\CodeIgniter\View\View|mixed
+    public static function renderer(string $viewPath = null, $config = null, bool $getShared = true)
+    {
+        if($getShared) {
+            return static::getSharedInstance('renderer', $viewPath, $config);
+        }
+
+        if(is_null($config)) {
+            $config = new \Config\View();
+        }
+
+        if(is_null($viewPath)) {
+            $paths = config('Paths');
+
+            $viewPath = $paths->viewDirectory;
+        }
+
+        return new \App\Libraries\View($config, $viewPath, static::locator(), CI_DEBUG, static::logger());
+    }
+     */
 }
