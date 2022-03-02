@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\CustomBaseController;
-use App\Models\User as UserModel;
+use App\Models\UsersModel;
 
 class User extends CustomBaseController
 {
@@ -13,7 +13,7 @@ class User extends CustomBaseController
     ];
     
     protected $models = [
-        'item' => UserModel::class
+        'item' => UsersModel::class
     ];
     
     public function index()
@@ -41,7 +41,7 @@ class User extends CustomBaseController
             'login_pass' => [
                 'label' => 'パスワード', 'rules' => 'required|min_length[4]', 'errors' => [
                     'required' => 'required {field} input.',
-                    'min_length' => 'Your {field} is too short. You want to get hacked???'
+                    'min_length' => 'Your {field} is too short.'
                 ]
             ],
             'login_pass_conf' => [

@@ -36,12 +36,20 @@ $routes->get('/', 'Home::index');
 
 
 // Product
-$routes->get('/product', 'Product::index');
+$routes->get('product', 'Product::index');
 
 
 // User
-$routes->get('/user/create_table', 'User::connection');
-$routes->get('/user/mypage', 'User::mypage');
+$routes->group('user',function($routes) {
+    $routes->get('create_table', 'User::connection');
+    $routes->get('mypage', 'User::mypage');
+    $routes->get('mypage/posts', 'User::myposts');
+    $routes->get('signin', 'User::signin');
+    $routes->post('signin', 'User::signin');
+    $routes->get('signup', 'User::signup');
+    $routes->post('signup', 'User::signup');
+    $routes->get('signout', 'User::signout');
+});
 
 /*
  * --------------------------------------------------------------------

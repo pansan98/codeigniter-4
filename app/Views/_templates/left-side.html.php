@@ -38,14 +38,14 @@ use \Config\Bootstrap;
             </li>
             <li>
                 <a href="javascript: void(0);" class="no-link">
-                    <i class="material-icons">coming soon.</i>
-                    <span>Book</span>
+                    <i class="material-icons">create</i>
+                    <span>coming soon.</span>
                 </a>
             </li>
             <li>
                 <a href="javascript: void(0);" class="no-link">
-                    <i class="material-icons">coming soon.</i>
-                    <span>URL ScreenShot</span>
+                    <i class="material-icons">add_to_photos</i>
+                    <span>coming soon.</span>
                 </a>
             </li>
             <?php if(false): ?>

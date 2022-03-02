@@ -18,10 +18,11 @@
                         </div>
                         <table class="table text-enter">
                             <tr>
+                                <th class="text-center">edit</th>
                                 <th class="text-center">Name1</th>
                                 <th class="text-center">Name2</th>
                                 <th class="text-center">Name3</th>
-                                <th class="text-center">Name4</th>
+                                <th class="text-center">delete</th>
                             </tr>
                             <tr>
                                 <td class="text-center">

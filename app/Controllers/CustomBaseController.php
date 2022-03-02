@@ -26,7 +26,7 @@ class CustomBaseController extends BaseController
         try{
             if(!empty($this->models)) {
                 foreach ($this->models as $model) {
-                    (new $model)->create_table();
+                    (new $model)->run();
                 }
             }
         } catch(Exception $e) {
