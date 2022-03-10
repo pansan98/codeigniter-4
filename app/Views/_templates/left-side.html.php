@@ -38,13 +38,19 @@ use \Config\Bootstrap;
             </li>
             <li>
                 <a href="javascript: void(0);" class="no-link">
-                    <i class="material-icons">create</i>
+                    <i class="material-icons">person</i>
                     <span>coming soon.</span>
                 </a>
             </li>
             <li>
                 <a href="javascript: void(0);" class="no-link">
-                    <i class="material-icons">add_to_photos</i>
+                    <i class="material-icons">favorite</i>
+                    <span>coming soon.</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript: void(0);" class="no-link">
+                    <i class="material-icons">settings</i>
                     <span>coming soon.</span>
                 </a>
             </li>

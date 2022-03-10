@@ -129,4 +129,12 @@ class UsersModel extends BaseModel
     {
         return isset($this->errors[$key]) ? $this->errors[$key] : null;
     }
+    
+    /**
+     * @return array|null|object
+     */
+    public function getUser()
+    {
+        return $this->find(1);
+    }
 }

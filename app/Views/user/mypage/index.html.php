@@ -9,37 +9,106 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Home
+                            the posts.
                         </h2>
+                        <button type="button" class="btn btn-info btn-circle-lg waves-effect waves-circle waves-float pull-right" style="position: absolute; right: 0; top: 0;">
+                            <a href="javascript: void(0)" style="color: white;">
+                                <i class="material-icons" style="font-size: 30px !important; left: -14px !important; top: 4px !important;">add_to_photos</i>
+                            </a>
+                        </button>
                     </div>
-                    <div class="body table-responsive">
-                        <div class="m-b-20 m-t--20">
-                            <a href="javascript: void(0);" class="btn btn-primary m-t-15 waves-effect">新規作成</a>
+                    <div class="body">
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#timeline" aria-controls="timeline" role="tab" data-toggle="tab" aria-expanded="true" app-load="timeline" app-load-execute="current">
+                                        <i class="material-icons">timeline</i>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#dm" aria-controls="dm" role="tab" data-toggle="tab" aria-expanded="true" app-load="dm" app-load-execute="loaded">
+                                        <i class="material-icons">message</i>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#search" aria-controls="search" data-toggle="tab" aria-expanded="true" app-load="search" app-load-execute="loaded">
+                                        <i class="material-icons">location_searching</i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="timeline">
+                                    <?php if(!empty($timelines)): ?>
+                                    <div class="panel panel-default panel-post">
+                                        <div class="panel-heading">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="javascript:void(0)">
+                                                        <img src="" alt="User Image">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">
+                                                        <a href="javascript: void(0);"></a>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="post">
+                                                <div class="post-heading">
+                                                    <p>
+                                                        Text TextText TextText TextText TextText TextText TextText Text<br/>
+                                                        Text TextText Text
+                                                    </p>
+                                                </div>
+                                                <div class="post-content">
+                                                    <p>
+                                                        Text TextText TextText TextText TextText TextText TextText Text<br/>
+                                                        Text TextText Text
+                                                    </p>
+                                                    
+                                                    <img src="" alt="post-1">
+                                                    <img src="" alt="post-2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript: void(0);">
+                                                        <i class="material-icons">favorite</i>
+                                                        <span>10 favorite.</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript: void(0);">
+                                                        <i class="material-icons">comment</i>
+                                                        <span>4 Comments.</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <?php
+                                                        echo form_input([
+                                                            'type' => 'input',
+                                                            'id' => 'comment',
+                                                            'name' => 'comment',
+                                                            'class' => 'form-control',
+                                                            'placeholder' => 'Comments...'
+                                                        ]);
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php else: ?>
+                                        <p>no posts... follow as</p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         </div>
-                        <table class="table text-enter">
-                            <tr>
-                                <th class="text-center">edit</th>
-                                <th class="text-center">Name1</th>
-                                <th class="text-center">Name2</th>
-                                <th class="text-center">Name3</th>
-                                <th class="text-center">delete</th>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-info btn-circle-lg waves-effect waves-circle waves-float"><a href="javascript: void(0);" style="color: white;"><i class="material-icons" style="font-size: 30px !important; left: -14px !important; top: 4px !important;">edit</i></a></button>
-                                </td>
-                                <td>Value1</td>
-                                <td>Value2</td>
-                                <td>Value3</td>
-                                <td class="text-center">
-                                    <form action="./" method="post">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                                        <button style="padding: 5px 10px;" type="submit" class="btn btn-danger btn-lg waves-effect" aria-label="Left Align"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>

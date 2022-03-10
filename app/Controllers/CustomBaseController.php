@@ -28,6 +28,7 @@ class CustomBaseController extends BaseController
                 foreach ($this->models as $model) {
                     (new $model)->run();
                 }
+                echo 'done.';
             }
         } catch(Exception $e) {
             throw $e;

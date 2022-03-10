@@ -17,3 +17,9 @@ if(!function_exists('__error')) {
         return $content;
     }
 }
+
+if(!function_exists('__e')) {
+    function __e($string, $encode = 'UTF-8') {
+        return htmlspecialchars($string, ENT_QUOTES, $encode);
+    }
+}

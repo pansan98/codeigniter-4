@@ -26,8 +26,16 @@ class User extends CustomBaseController
     
     public function mypage()
     {
-        //return $this->view('mypage');
-        return view($this->views['mypage']);
+        helper(['view', 'form']);
+        
+        /** @var UsersModel $model */
+        $model = model('UsersModel');
+        $user = $model->getUser();
+        
+        return $this->view('mypage', [
+            'user' => $user,
+            'timelines' => []
+        ]);
     }
 
     /**
@@ -35,7 +43,7 @@ class User extends CustomBaseController
      */
     public function signin()
     {
-        helper('form');
+        helper(['form', 'view']);
 
         $posts = [];
         if($this->request->getMethod(true) === 'POST') {
@@ -104,6 +112,8 @@ class User extends CustomBaseController
                     $posts['login_pass'] = $model->encrypt($posts['login_pass'], 'password');
 
                     $model->save($posts);
+                    
+                    return $this->view('mypage');
                 }
 
                 $model_errors = $model->getError('exists');
