@@ -1,0 +1,41 @@
+{
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "webpack --watch --progress --config webpack.config.js",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "webpack --config webpack.config.js",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "build": "webpack --config webpack.config.js"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.2.3",
+        "@babel/core": "^7.2.2",
+        "@babel/plugin-transform-modules-commonjs": "^7.5.0",
+        "@babel/plugin-transform-runtime": "^7.5.0",
+        "@babel/preset-env": "^7.2.3",
+        "@babel/preset-stage-3": "^7.0.0",
+        "autoprefixer": "^9.4.7",
+        "babel-loader": "^8.0.4",
+        "babel-plugin-add-module-exports": "^1.0.2",
+        "babel-plugin-syntax-async-functions": "^6.13.0",
+        "css-loader": "^2.1.0",
+        "eslint": "^5.12.1",
+        "mini-css-extract-plugin": "^0.5.0",
+        "node-sass": "^4.12.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "postcss-loader": "^3.0.0",
+        "sass-loader": "^7.1.0",
+        "uglifyjs-webpack-plugin": "^2.1.1",
+        "webpack": "^4.28.2",
+        "webpack-cli": "^3.1.2",
+        "webpack-fix-style-only-entries": "^0.1.0",
+        "webpack-merge": "^4.1.5"
+    },
+    "dependencies": {
+        "glob": "^7.1.3"
+    }
+}

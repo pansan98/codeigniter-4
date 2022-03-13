@@ -19,7 +19,15 @@ if(!function_exists('__error')) {
 }
 
 if(!function_exists('__e')) {
-    function __e($string, $encode = 'UTF-8') {
+    function __e($string, $encode = 'UTF-8')
+    {
         return htmlspecialchars($string, ENT_QUOTES, $encode);
+    }
+}
+
+if(!function_exists('__short')) {
+    function __short($string, $width = 100, $maker = '...', $encode = 'UTF-8')
+    {
+        return mb_strimwidth($string, 0, $width, $maker, $encode);
     }
 }

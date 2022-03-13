@@ -112,6 +112,11 @@ class User extends CustomBaseController
                     $posts['login_pass'] = $model->encrypt($posts['login_pass'], 'password');
 
                     $model->save($posts);
+    
+                    /**
+                     * TODO
+                     * アカウント作成後、ログイン処理を追加してマイページへ
+                     */
                     
                     return $this->view('mypage');
                 }

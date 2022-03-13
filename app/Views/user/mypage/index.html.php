@@ -11,7 +11,7 @@
                         <h2>
                             the posts.
                         </h2>
-                        <button type="button" class="btn btn-info btn-circle-lg waves-effect waves-circle waves-float pull-right" style="position: absolute; right: 0; top: 0;">
+                        <button type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float pull-right app-alert" style="position: absolute; right: 0; top: 0;" data-type="post">
                             <a href="javascript: void(0)" style="color: white;">
                                 <i class="material-icons" style="font-size: 30px !important; left: -14px !important; top: 4px !important;">add_to_photos</i>
                             </a>
@@ -21,17 +21,17 @@
                         <div>
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active">
-                                    <a href="#timeline" aria-controls="timeline" role="tab" data-toggle="tab" aria-expanded="true" app-load="timeline" app-load-execute="current">
+                                    <a href="#timeline" aria-controls="timeline" role="tab" data-toggle="tab" aria-expanded="true" app-load="timeline" app-load-execute="current" class="app-pages">
                                         <i class="material-icons">timeline</i>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#dm" aria-controls="dm" role="tab" data-toggle="tab" aria-expanded="true" app-load="dm" app-load-execute="loaded">
+                                    <a href="#dm" aria-controls="dm" role="tab" data-toggle="tab" aria-expanded="true" app-load="dm" app-load-execute="loaded" class="app-pages">
                                         <i class="material-icons">message</i>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#search" aria-controls="search" data-toggle="tab" aria-expanded="true" app-load="search" app-load-execute="loaded">
+                                    <a href="#search" aria-controls="search" data-toggle="tab" aria-expanded="true" app-load="search" app-load-execute="loaded" class="app-pages">
                                         <i class="material-icons">location_searching</i>
                                     </a>
                                 </li>
