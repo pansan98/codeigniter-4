@@ -36,7 +36,7 @@ class Database extends Config
         'username' => 'root',
         'password' => 'root',
         'database' => 'ci4',
-        'DBDriver' => 'mysqli',
+        'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
