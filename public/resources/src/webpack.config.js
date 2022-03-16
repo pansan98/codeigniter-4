@@ -8,8 +8,8 @@ const glob = require("glob");
 let entries = {};
 
 // JS
-glob.sync("./js/*.js").map(function (file) {
-    const pattern = new RegExp('./js');
+glob.sync("./resource/js/*.js").map(function (file) {
+    const pattern = new RegExp('./resource/js');
     let name = path.dirname(file).replace(pattern, 'js') + '/' + path.basename(file, '.js');
     entries[name] = file;
 });
@@ -24,7 +24,7 @@ module.exports = {
     entry: entries,
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, '../bundle/custom/js/')
+        path: path.resolve(__dirname, '../bundle/custom/')
     },
     optimization: {
         minimizer: [

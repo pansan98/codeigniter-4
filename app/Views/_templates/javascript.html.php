@@ -39,3 +39,14 @@ use \Config\Bootstrap;
 
 <!-- Custom Js -->
 <script src="<?php echo Bootstrap::APP__BUNDLE_RESOURCES_PATH(); ?>js/admin.js"></script>
+
+<!-- Custom App Js -->
+<script src="<?php echo Bootstrap::APP__BUNDLE_RESOURCES_PATH(); ?>custom/js/AppModules.bundle.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(e) {
+        var AppModule = new window._services.app('<?php echo isset($app_page) ? $app_page : 'index'; ?>', {});
+        AppModule.flush();
+        //(new AppModule('<?php //echo isset($app_page) ? $app_page : 'index'; ?>')).flush();
+    });
+</script>
