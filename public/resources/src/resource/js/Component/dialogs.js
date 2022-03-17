@@ -55,8 +55,10 @@ export default class Dialogs {
         this.showOveraly();
         this.field.style.display = 'block';
         this.field.style.position = 'absolute';
-        this.field.style.top = '10%';
+        this.field.style.overflow = 'auto';
+        this.field.style.top = '0';
         this.field.style.width = '50%';
+        this.field.style.height = '100%';
         this.field.style.background = '#FFF';
         this.field.style.padding = '20px 10px';
         this.field.style.left = '25%';

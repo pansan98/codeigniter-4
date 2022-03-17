@@ -18,6 +18,9 @@ use \Config\Bootstrap;
 <!-- Morris Chart Css -->
 <link href="<?php echo Bootstrap::APP__BOOTSTRAP_RESOURCES_PATH(); ?>plugins/morrisjs/morris.css" rel="stylesheet"/>
 
+<!-- Dropzone -->
+<link href="<?php echo Bootstrap::APP__BOOTSTRAP_RESOURCES_PATH(); ?>plugins/dropzone/dropzone.css" rel="stylesheet"/>
+
 <!-- Custom Css -->
 <link href="<?php echo Bootstrap::APP__BOOTSTRAP_RESOURCES_PATH(); ?>css/style.min.css" rel="stylesheet"/>
 
