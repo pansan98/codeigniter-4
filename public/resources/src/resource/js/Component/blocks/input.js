@@ -1,6 +1,18 @@
 'use strict';
 
-export default class blockInput {
+import Block from './block';
+
+export default class blockInput extends Block {
+
+    blocks;
+    block_class_name = 'app-input-block';
+    block_options = [];
+
+    constructor() {
+        super();
+        this.build_options();
+    }
+
     create(blocks)
     {
         let fields = document.createElement('fieldset');

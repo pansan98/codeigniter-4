@@ -11,19 +11,7 @@
                         <h2>
                             the posts.
                         </h2>
-                        <?php
-                        $forms = json_encode([
-                            'name' => [
-                                'type' => 'input',
-                                'options' => [
-                                    'name' => 'content',
-                                    'placeholder' => 'the content...',
-                                    'class' => ['form-control']
-                                ]
-                            ]
-                        ],\JSON_UNESCAPED_SLASHES);
-                        ?>
-                        <button type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float pull-right app-alert app-dialogs-puts" style="position: absolute; right: 0; top: 0;" data-type="post" data-dialogs-type="inputs" data-dialogs-endpoint="<?php echo route_to('api_posts_form'); ?>" data-dialogs-event="click">
+                        <button type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float pull-right app-alert app-dialogs-puts" style="position: absolute; right: 0; top: 0;" data-type="post" data-dialogs-type="inputs" data-dialogs-endpoint="<?php echo route_to('api_posts_form'); ?>" data-dialogs-event="click" data-dialogs-callback-block-module="media">
                             <a href="javascript: void(0)" style="color: white;">
                                 <i class="material-icons" style="font-size: 30px !important; left: -14px !important; top: 4px !important;">add_to_photos</i>
                             </a>

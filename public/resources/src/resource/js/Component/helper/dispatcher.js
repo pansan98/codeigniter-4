@@ -3,10 +3,12 @@
  */
 
 export default class Dispatcher {
+    options;
+    jqxhr;
+
     constructor(options)
     {
         this.options = options;
-        this.jqxhr = null;
     }
 
     add(key, value)
@@ -28,13 +30,14 @@ export default class Dispatcher {
      * @param  {[class]} storage [Storage Class]
      * @return {[type]}         [description]
      */
-    flush(storage, callable, faild)
+    flush(storage, callable, faild, always)
     {
+        const _self = this;
         if(this.jqxhr) this.jqxhr.abort();
 
         let storages = storage.get();
         let fd;
-        if(this.options.type === 'post' || this.options.type === 'POST') {
+        if(this.options.type.toUpperCase() === 'POST') {
             let fd = new FormData();
             for(let k in storages) {
                 fd.append(k, storages[k]);
@@ -44,7 +47,7 @@ export default class Dispatcher {
             for(let k in storages) {
                 fd[k] = storages[k];
             }
-            fd = encodeURI(fd);
+            //fd = encodeURI(fd);
         }
 
         this.options.data = fd;
@@ -52,7 +55,15 @@ export default class Dispatcher {
         this.jqxhr = $.ajax(this.options).done((data) => {
             callable(data);
         }).fail((xhr, textStatus, errorThrow) => {
-            faild(xhr, textStatus, errorThrow);
+            if(typeof faild !== 'function') {
+                _self.faild(xhr, textStatus, errorThrow);
+            } else {
+                faild(xhr, textStatus, errorThrow);
+            }
+        }).always(() => {
+            if(typeof always === 'function') {
+                always();
+            }
         });
     }
 

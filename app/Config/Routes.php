@@ -40,6 +40,7 @@ $routes->get('product', 'Product::index');
 $routes->group('api', function($routes) {
     /** @var \CodeIgniter\Router\RouteCollection $routes */
     $routes->get('posts/form', 'Api::posts_form', ['as' => 'api_posts_form']);
+    $routes->post('upload', 'Api::upload', ['as' => 'api_upload']);
 });
 
 

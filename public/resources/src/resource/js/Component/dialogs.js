@@ -24,7 +24,7 @@ export default class Dialogs {
                 let endpoint = puts[i].getAttribute('data-dialogs-endpoint');
                 let event = puts[i].getAttribute('data-dialogs-event');
                 puts[i].addEventListener(event, (e) => {
-                    _self.puts(type, endpoint);
+                    _self.puts(type, endpoint, puts[i]);
                 });
             }
         }
@@ -37,13 +37,13 @@ export default class Dialogs {
      * @param {array} fields 
      * @returns 
      */
-    puts(type, endpoint)
+    puts(type, endpoint, em)
     {
         if(!this.field) return false;
 
         switch(type) {
             case 'inputs':
-                this.get_inputs(endpoint);
+                this.get_inputs(endpoint, em);
                 break;
             default:
                 break;
@@ -79,7 +79,7 @@ export default class Dialogs {
      * 
      * @param {string} endpoint 
      */
-    get_inputs(endpoint)
+    get_inputs(endpoint, em)
     {
         const _self = this;
 
@@ -101,8 +101,26 @@ export default class Dialogs {
 
                 _self.buttons();
                 _self.open();
+
+                // TODO ダイアログ表示後のコールバック適用
+                _self.callback_flush(em);
             }
         }, dispatcher.fail);
+    }
+
+    /**
+     * 
+     * @param {HTMLElement} em 
+     */
+    callback_flush(em)
+    {
+        let callback = em.getAttribute('data-dialogs-callback-block-module');
+        if(callback) {
+            let module = window._services.app.default().get_block(callback);
+            if(module) {
+                module.default();
+            }
+        }
     }
 
     /**

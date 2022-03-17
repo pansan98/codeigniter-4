@@ -28,4 +28,9 @@ class Api extends CustomBaseController
 
         return $this->setResponseFormat('json')->respond(['html' => $html]);
     }
+    
+    public function upload()
+    {
+    
+    }
 }

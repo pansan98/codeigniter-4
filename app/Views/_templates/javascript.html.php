@@ -45,7 +45,9 @@ use \Config\Bootstrap;
 
 <script>
     document.addEventListener('DOMContentLoaded', function(e) {
-        var AppModule = new window._services.app('<?php echo isset($app_page) ? $app_page : 'index'; ?>', {});
+        var _page = '<?php echo isset($app_page) ? $app_page : 'index'; ?>';
+        var AppModule = new window._services.app(_page, {});
         AppModule.load();
+        AppModule.load_block_module();
     });
 </script>

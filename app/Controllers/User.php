@@ -34,7 +34,8 @@ class User extends CustomBaseController
         
         return $this->view('mypage', [
             'user' => $user,
-            'timelines' => []
+            'timelines' => [],
+            'app_page' => 'input'
         ]);
     }
 
