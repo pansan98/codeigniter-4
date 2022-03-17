@@ -23,7 +23,7 @@
                             ]
                         ],\JSON_UNESCAPED_SLASHES);
                         ?>
-                        <button type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float pull-right app-alert" style="position: absolute; right: 0; top: 0;" data-type="post" onclick='window._services.dialogs.puts("inputs", "Post Form", "<?php echo $forms; ?>");'>
+                        <button type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float pull-right app-alert app-dialogs-puts" style="position: absolute; right: 0; top: 0;" data-type="post" data-dialogs-type="inputs" data-dialogs-endpoint="<?php echo route_to('api_posts_form'); ?>" data-dialogs-event="click">
                             <a href="javascript: void(0)" style="color: white;">
                                 <i class="material-icons" style="font-size: 30px !important; left: -14px !important; top: 4px !important;">add_to_photos</i>
                             </a>

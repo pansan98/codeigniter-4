@@ -37,6 +37,10 @@ $routes->get('/', 'Home::index');
 
 // Product
 $routes->get('product', 'Product::index');
+$routes->group('api', function($routes) {
+    /** @var \CodeIgniter\Router\RouteCollection $routes */
+    $routes->get('posts/form', 'Api::posts_form', ['as' => 'api_posts_form']);
+});
 
 
 // User

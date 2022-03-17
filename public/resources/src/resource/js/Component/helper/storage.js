@@ -5,6 +5,11 @@ export default class Storage {
         this.storage.page = 1;
     }
 
+    /**
+     * 
+     * @param {*} key 
+     * @returns 
+     */
     get(key)
     {
         if(!key) {
@@ -14,28 +19,26 @@ export default class Storage {
         }
     }
 
+    /**
+     * 
+     * @param {*} key 
+     * @param {*} value 
+     */
     add(key, value)
     {
         if(this.storage[key]) {
-            this.remove(this.storage[key]);
+            this.remove(key);
         }
 
         this.storage[key] = value;
     }
 
+    /**
+     * 
+     * @param {*} key 
+     */
     remove(key)
     {
         this.storage[key] = null;
-    }
-
-    has(doms, key, attr, active_class) {
-        if(doms) {
-            for(let i = 0; i < doms.length; i++) {
-                if(doms[i].classList.contains(active_class)) {
-                    let value = doms[i].getAttribute(attr);
-                    this.add(key, value);
-                }
-            }
-        }
     }
 }

@@ -1,9 +1,11 @@
+/**
+ * HelperのStorageと一緒に利用
+ */
 
 export default class Dispatcher {
-    constructor()
+    constructor(options)
     {
-        this.options = {};
-        this.data = {};
+        this.options = options;
         this.jqxhr = null;
     }
 
@@ -21,20 +23,6 @@ export default class Dispatcher {
         this.options[key] = null;
     }
 
-    add_data(key, value)
-    {
-        if(this.data[key]) {
-            this.remove_data(key);
-        }
-
-        this.data[key] = value;
-    }
-
-    remove_data(key)
-    {
-        this.data[key] = null;
-    }
-
     /**
      * [flush description]
      * @param  {[class]} storage [Storage Class]
@@ -44,26 +32,38 @@ export default class Dispatcher {
     {
         if(this.jqxhr) this.jqxhr.abort();
 
-        const page = storage.get('page');
-        const lineup_category = storage.get('lineup_category');
-        const lineup = storage.get('lineup');
-        const media = storage.get('media');
-        const keyword = storage.get('keyword');
+        let storages = storage.get();
+        let fd;
+        if(this.options.type === 'post' || this.options.type === 'POST') {
+            let fd = new FormData();
+            for(let k in storages) {
+                fd.append(k, storages[k]);
+            }
+        } else {
+            fd = {};
+            for(let k in storages) {
+                fd[k] = storages[k];
+            }
+            fd = encodeURI(fd);
+        }
 
-        let datas = {};
-        datas.page = page;
-        datas.lineup_category = lineup_category;
-        datas.lineup = lineup;
-        datas.media = media;
-        datas.keyword = keyword;
+        this.options.data = fd;
 
-        const options = {
-            url: this.options.endpoint,
-            type: 'GET',
-            data: datas,
-            dataType: 'json',
-        };
+        this.jqxhr = $.ajax(this.options).done((data) => {
+            callable(data);
+        }).fail((xhr, textStatus, errorThrow) => {
+            faild(xhr, textStatus, errorThrow);
+        });
+    }
 
-        this.jqxhr = $.ajax(options).done(callable).fail(faild);
+    /**
+     * デフォルトfaild
+     * @param {*} xhr 
+     * @param {*} textStatus 
+     * @param {*} errorThrow 
+     */
+    fail(xhr, textStatus, errorThrow) {
+        console.log(textStatus);
+        console.log(errorThrow);
     }
 }

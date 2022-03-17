@@ -34,7 +34,7 @@
 $this->renderSection('content');
 ?>
 
-<div class="dialogs-overlay"></div>
+<div class="dialogs-overlay" id="dialogs-overlay"></div>
 <div class="sweet-alert show-input showSweetAlert visible" id="dialogs-field" data-animation="slide-from-top"></div>
 
 <?php echo $this->include('_templates/javascript.html.php'); ?>

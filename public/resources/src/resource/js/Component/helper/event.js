@@ -1,66 +1,32 @@
 export default class Event {
+    constructor() {
+        this.events = {};
+    }
 
+    /**
+     * 
+     * @param {*} dom 
+     * @param {*} type 
+     * @param {*} call 
+     */
     add(dom, type, call)
     {
         if(dom) {
+            if(!this.events[type]) {
+                this.events[type] = [];
+            }
+            this.events[type].push(call);
             dom.addEventListener(type, call);
         }
     }
 
+    /**
+     * 
+     * @returns 
+     */
     get()
     {
-        return this;
-    }
-
-    category_switch(target, doms)
-    {
-        if(target && doms) {
-            for(let i = 0; i < doms.length; i++) {
-                if(target.getAttribute('data-lineup-category') == doms[i].getAttribute('data-lineup-category')) {
-                    if(!doms[i].classList.contains('is-active')) {
-                        doms[i].classList.add('is-active');
-                    }
-                } else {
-                    if(doms[i].classList.contains('is-active')) {
-                        doms[i].classList.remove('is-active');
-                    }
-                }
-            }
-        }
-    }
-
-    lineup_switch(target, doms)
-    {
-        if(target && doms) {
-            for(let i = 0; i < doms.length; i++) {
-                if(target.getAttribute('data-lineup') == doms[i].getAttribute('data-lineup')) {
-                    if(!doms[i].classList.contains('is-active')) {
-                        doms[i].classList.add('is-active');
-                    }
-                } else {
-                    if(doms[i].classList.contains('is-active')) {
-                        doms[i].classList.remove('is-active');
-                    }
-                }
-            }
-        }
-    }
-
-    media_switch(target, doms)
-    {
-        if(target && doms) {
-            for(let i = 0; i < doms.length; i++) {
-                if(target.getAttribute('data-media') == doms[i].getAttribute('data-media')) {
-                    if(!doms[i].classList.contains('is-active')) {
-                        doms[i].classList.add('is-active');
-                    }
-                } else {
-                    if(doms[i].classList.contains('is-active')) {
-                        doms[i].classList.remove('is-active');
-                    }
-                }
-            }
-        }
+        return this.events;
     }
 
     /**

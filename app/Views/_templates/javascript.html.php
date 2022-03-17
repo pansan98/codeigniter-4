@@ -46,7 +46,6 @@ use \Config\Bootstrap;
 <script>
     document.addEventListener('DOMContentLoaded', function(e) {
         var AppModule = new window._services.app('<?php echo isset($app_page) ? $app_page : 'index'; ?>', {});
-        AppModule.flush();
-        //(new AppModule('<?php //echo isset($app_page) ? $app_page : 'index'; ?>')).flush();
+        AppModule.load();
     });
 </script>

@@ -16,7 +16,7 @@ var AppModule = (page, options) => {
         this.load_block_modules();
     }
 
-    this.options = {};
+    this.options = options;
 }
 
 AppModule.prototype.load_block_module = () => {
@@ -34,10 +34,10 @@ AppModule.prototype.get_block = () => {
     return this.block_modules;
 }
 
-AppModule.prototype.flush = () => {
+AppModule.prototype.load = () => {
     //window._services = {};
     for(let k in this.modules) {
-        window._services[k] = this.modules[k]
+        window._services[k] = new this.modules[k].default();
     }
 }
 
