@@ -1,11 +1,19 @@
 import Block from './block';
 import Dispatcher from '../helper/dispatcher';
 import Storage from '../helper/storage';
+import State from '../state/mediaState';
+import mediaState from '../state/mediaState';
 
 export default class blockMedia extends Block {
-    blocks;
+    blocks = [];
     block_class_name = 'app-media-block';
-    block_options = ['app-options-max-items', 'app-options-extensions', 'app-options-max-size', 'app-options-endpoint', 'app-options-timeout'];
+    block_options = {
+        maxItems: 'app-options-max-items',
+        extensions: 'app-options-extensions',
+        maxSize: 'app-options-max-size',
+        endpoint: 'app-options-endpoint',
+        timeout: 'app-options-timeout'
+    };
 
     constructor() {
         super();
@@ -19,12 +27,12 @@ export default class blockMedia extends Block {
             for(let i = 0; i < this.blocks.length; i++) {
                 if(!this.blocks[i].classList.contains('block-module-loaded')) {
                     let dropzone = this.blocks[i].querySelector('.dropzone');
-                    if(dropzone.length) {
+                    if(dropzone) {
                         this.dropzone(dropzone);
                     }
 
                     let clickable = this.blocks[i].querySelector('.dz-clickable');
-                    if(clickable.length) {
+                    if(clickable) {
                         this.clickable(clickable);
                     }
                 }
@@ -33,28 +41,61 @@ export default class blockMedia extends Block {
     }
 
     /**
+     * Unique IdからStateを作成
+     * @param {HTMLElements} blocks 
+     */
+    build_state(blocks)
+    {
+        if(blocks.length) {
+            for(let i = 0; i < blocks.length; i++) {
+                let uniqid = blocks[i].getAttribute('data-app-uniqid');
+                if(!uniqid) {
+                    throw new Error('Oops, Not Found UniqId...');
+                }
+
+                this.states[uniqid] = new mediaState(uniqid);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param {HTMLElement} em
+     */
+    refresh() {
+        this.blocks = document.getElementsByClassName(this.block_class_name);
+        this.build();
+        this.build_options();
+    }
+
+    /**
      *
      * @param {HTMLElement} field
      */
     dropzone(field)
     {
-        console.log('aaa');
         const _self = this;
         field.addEventListener('dragenter', (e) => {
             e.stopPropagation();
             e.preventDefault();
-            _self.activate(this);
+            _self.activate(field);
         });
 
         field.addEventListener('dragover', (e) => {
             e.stopPropagation();
             e.preventDefault();
-            _self.activate(this);
+            _self.activate(field);
         });
 
         field.addEventListener('dragleave', (e) => {
-            _self.diactivate(this);
-        })
+            _self.diactivate(field);
+        });
+
+        // ドロップ
+        $(field).on('drop', (e) => {
+            let files = e.originalEvent.dataTransfer.files;
+            _self.upload(e, files, field);
+        });
     }
 
     /**
@@ -83,8 +124,13 @@ export default class blockMedia extends Block {
             }
 
             const dispatcher = new Dispatcher(options);
-            const storage = Storage();
+            const storage = new Storage();
             storage.add('attachments', files);
+
+            // CSRF
+            let _csrf_name = $(field).closest('fieldset').attr('data-app-csrf-name');
+            let _csrf = $(field).closest('fieldset').attr('data-app-csrf');
+            storage.add(_csrf_name, _csrf);
 
             dispatcher.flush(storage, (data) => {
                 _self.uploaded(data, field);
@@ -98,7 +144,7 @@ export default class blockMedia extends Block {
 
     uploaded(data, field)
     {
-
+        console.log(data);
     }
 
     upload_has(field, has)
@@ -122,7 +168,9 @@ export default class blockMedia extends Block {
      */
     activate(field)
     {
-        field.classList.add('dz-drag-hover');
+        if(!field.classList.contains('dz-drag-hover')) {
+            field.classList.add('dz-drag-hover');
+        }
     }
 
     /**
@@ -131,6 +179,8 @@ export default class blockMedia extends Block {
      */
     diactivate(field)
     {
-        field.classList.remove('dz-drag-hover');
+        if(field.classList.contains('dz-drag-hover')) {
+            field.classList.remove('dz-drag-hover');
+        }
     }
 }

@@ -38,7 +38,7 @@ export default class Dispatcher {
         let storages = storage.get();
         let fd;
         if(this.options.type.toUpperCase() === 'POST') {
-            let fd = new FormData();
+            fd = new FormData();
             for(let k in storages) {
                 fd.append(k, storages[k]);
             }

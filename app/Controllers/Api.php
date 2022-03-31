@@ -31,6 +31,17 @@ class Api extends CustomBaseController
     
     public function upload()
     {
-    
+        helper(['form', 'view']);
+        if($this->request->getMethod(true) === 'POST') {
+            $attachments = $this->request->getPost('attachments');
+            if(!empty($attachments)) {
+                $attachments = json_decode($attachments, true);
+                foreach ($attachments as $attachment) {
+                    $a = $attachment;
+                }
+            }
+        }
+        
+        return $this->setResponseFormat('json')->respond(['html' => 'aaaa']);
     }
 }

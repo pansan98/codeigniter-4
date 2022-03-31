@@ -11,7 +11,7 @@
                         <h2>
                             the posts.
                         </h2>
-                        <button type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float pull-right app-alert app-dialogs-puts" style="position: absolute; right: 0; top: 0;" data-type="post" data-dialogs-type="inputs" data-dialogs-endpoint="<?php echo route_to('api_posts_form'); ?>" data-dialogs-event="click" data-dialogs-callback-block-module="media">
+                        <button type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float pull-right app-alert app-dialogs-puts" style="position: absolute; right: 0; top: 0;" data-type="post" data-dialogs-type="inputs" data-dialogs-endpoint="<?php echo route_to('api_posts_form'); ?>" data-dialogs-event="click" data-dialogs-callback-block-module="media" data-dialogs-callback-packages="blocks" data-dialogs-callback-block-method="add_build">
                             <a href="javascript: void(0)" style="color: white;">
                                 <i class="material-icons" style="font-size: 30px !important; left: -14px !important; top: 4px !important;">add_to_photos</i>
                             </a>
@@ -26,12 +26,12 @@
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#dm" aria-controls="dm" role="tab" data-toggle="tab" aria-expanded="true" app-load="dm" app-load-execute="loaded" class="app-pages">
+                                    <a href="#dm" aria-controls="dm" role="tab" data-toggle="tab" aria-expanded="true" app-load="dm" app-load-execute="loaded" app-endpoint="" class="app-pages">
                                         <i class="material-icons">message</i>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#search" aria-controls="search" data-toggle="tab" aria-expanded="true" app-load="search" app-load-execute="loaded" class="app-pages">
+                                    <a href="#search" aria-controls="search" data-toggle="tab" aria-expanded="true" app-load="search" app-load-execute="loaded" app-endpoint="" class="app-pages">
                                         <i class="material-icons">location_searching</i>
                                     </a>
                                 </li>

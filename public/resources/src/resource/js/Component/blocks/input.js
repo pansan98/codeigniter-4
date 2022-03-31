@@ -4,7 +4,7 @@ import Block from './block';
 
 export default class blockInput extends Block {
 
-    blocks;
+    blocks = [];
     block_class_name = 'app-input-block';
     block_options = [];
 

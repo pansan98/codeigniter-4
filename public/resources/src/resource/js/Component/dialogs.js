@@ -109,23 +109,29 @@ export default class Dialogs {
     }
 
     /**
-     * 
-     * @param {HTMLElement} em 
+     * コールバックを実行
+     * @param {HTMLElement} em
      */
     callback_flush(em)
     {
-        let callback = em.getAttribute('data-dialogs-callback-block-module');
-        if(callback) {
-            let module = window._services.app.default().get_block(callback);
-            if(module) {
-                module.default();
+        let callback_block = em.getAttribute('data-dialogs-callback-block-module');
+        let callback_packages = em.getAttribute('data-dialogs-callback-packages');
+        if(callback_block && callback_packages) {
+            if(typeof window._services[callback_packages] !== 'undefined') {
+                let packages = window._services[callback_packages];
+                if(typeof packages[callback_block] !== 'undefined') {
+                    let block = packages[callback_block];
+                    if(block) {
+                        block.refresh();
+                    }
+                }
             }
         }
     }
 
     /**
-     * 
-     * @param {*} dom 
+     *
+     * @param {*} dom
      */
     add(dom)
     {
@@ -167,7 +173,7 @@ export default class Dialogs {
 
         let ok = document.createElement('button');
         ok.classList.add('confirm');
-        ok.innerText = 'OK';
+        ok.innerText = '投稿';
         ok.style.display = 'inline-block';
         ok.style.backgroundColor = 'rgb(140, 212, 245)';
         ok.style.boxShadow = 'rgb(140 212 245 / 80%) 0px 0px 2px, rgb(0 0 0 / 5%) 0px 0px 0px 1px inset';
